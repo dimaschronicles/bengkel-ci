@@ -30,7 +30,7 @@
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="charts.html">
+            <a class="nav-link" href="<?= base_url('produk/list'); ?>">
                 <i class="fas fa-fw fa-boxes"></i>
                 <span>Produk</span></a>
         </li>
@@ -59,7 +59,7 @@
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="charts.html">
+            <a class="nav-link" href="<?= base_url('produk'); ?>">
                 <i class="fas fa-fw fa-boxes"></i>
                 <span>Produk</span></a>
         </li>
