@@ -36,7 +36,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="charts.html">
+            <a class="nav-link" href="<?= base_url('cart'); ?>">
                 <i class="fas fa-fw fa-shopping-cart"></i>
                 <span>Keranjang</span></a>
         </li>

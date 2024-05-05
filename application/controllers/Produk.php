@@ -190,4 +190,9 @@ class Produk extends CI_Controller
         $this->load->view('produk/list', $data);
         $this->load->view('templates/main_footer');
     }
+
+    public function detail($id)
+    {
+        echo 'hello world';
+    }
 }
