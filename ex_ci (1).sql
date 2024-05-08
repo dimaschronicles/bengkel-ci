@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2024 at 02:40 PM
+-- Generation Time: May 08, 2024 at 08:30 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -35,15 +35,6 @@ CREATE TABLE `cart` (
   `jumlah` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`id`, `user_id`, `produk_id`, `jumlah`) VALUES
-(10, 2, 1, 1),
-(11, 2, 2, 1),
-(12, 2, 3, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -57,6 +48,7 @@ CREATE TABLE `produk` (
   `jenis` enum('sparepart','jasa') NOT NULL,
   `stok` int(11) DEFAULT NULL,
   `harga` int(11) NOT NULL,
+  `diskon` int(11) DEFAULT NULL,
   `foto` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -65,10 +57,63 @@ CREATE TABLE `produk` (
 -- Dumping data for table `produk`
 --
 
-INSERT INTO `produk` (`id`, `nama_produk`, `deskripsi`, `jenis`, `stok`, `harga`, `foto`, `created_at`) VALUES
-(1, 'Oli Garda', 'adasdasd', 'sparepart', 12, 200000, NULL, '2024-05-05 12:54:21'),
-(2, 'Ganti Oli', 'asdasdasd', 'jasa', NULL, 30000, NULL, '2024-05-05 12:54:36'),
-(3, 'Velg 17', 'asdasdwqe', 'sparepart', 8, 500000, 'produk_1714906662.jpg', '2024-05-05 12:57:42');
+INSERT INTO `produk` (`id`, `nama_produk`, `deskripsi`, `jenis`, `stok`, `harga`, `diskon`, `foto`, `created_at`) VALUES
+(1, 'Oli Garda', 'adasdasd', 'sparepart', 10, 200000, NULL, NULL, '2024-05-05 12:54:21'),
+(2, 'Ganti Oli', 'asdasdasd', 'jasa', NULL, 30000, NULL, NULL, '2024-05-05 12:54:36'),
+(3, 'Velg 17', 'asdasdwqe', 'sparepart', 5, 500000, NULL, 'produk_1714906662.jpg', '2024-05-05 12:57:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaksi`
+--
+
+CREATE TABLE `transaksi` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `no_pemesanan` varchar(128) NOT NULL,
+  `jenis_pembayaran` enum('cash','qris') DEFAULT NULL,
+  `total` bigint(11) NOT NULL,
+  `status` enum('dipesan','diproses','selesai') DEFAULT NULL,
+  `plat_nomor` varchar(128) NOT NULL,
+  `keterangan` text NOT NULL,
+  `tanggal_waktu` datetime NOT NULL,
+  `bukti_pembayaran` varchar(255) DEFAULT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`id`, `user_id`, `no_pemesanan`, `jenis_pembayaran`, `total`, `status`, `plat_nomor`, `keterangan`, `tanggal_waktu`, `bukti_pembayaran`, `created_at`) VALUES
+(4, 2, 'INV-20240506110616-5211', 'cash', 730000, 'selesai', 'r 1231 sa', 'asdasd', '2024-05-06 11:06:16', NULL, '2024-05-06 11:06:16'),
+(5, 2, 'INV-20240507141044-9845', 'qris', 1200000, 'dipesan', 'r 1231 sa', 'asdasdasd', '2024-05-07 14:10:44', NULL, '2024-05-07 14:10:44');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaksi_detail`
+--
+
+CREATE TABLE `transaksi_detail` (
+  `id` int(11) NOT NULL,
+  `transaksi_id` int(11) NOT NULL,
+  `produk_id` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `total_harga` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `transaksi_detail`
+--
+
+INSERT INTO `transaksi_detail` (`id`, `transaksi_id`, `produk_id`, `jumlah`, `total_harga`) VALUES
+(7, 4, 1, 1, 200000),
+(8, 4, 2, 1, 30000),
+(9, 4, 3, 1, 500000),
+(10, 5, 1, 1, 200000),
+(11, 5, 3, 2, 1000000);
 
 -- --------------------------------------------------------
 
@@ -91,8 +136,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `name`, `password`, `role_id`, `is_active`, `created_at`) VALUES
-(1, 'admin@gmail', 'Administrator', '$2y$10$CvOJGRXsl3FpzjRb2TbeTuurnqQ8wn/22.n9GPwTt/IbSnnI0lI9m', 1, 1, '2024-05-01 05:04:23'),
-(2, 'dimas@gmail.com', 'Dimas Cahyo', '$2y$10$CvOJGRXsl3FpzjRb2TbeTuurnqQ8wn/22.n9GPwTt/IbSnnI0lI9m', 2, 1, '2024-05-01 05:05:43'),
+(1, 'admin@gmail.com', 'Administrator', '$2y$10$CvOJGRXsl3FpzjRb2TbeTuurnqQ8wn/22.n9GPwTt/IbSnnI0lI9m', 1, 1, '2024-05-01 05:04:23'),
+(2, 'dimas@gmail.com', 'Dimas', '$2y$10$CvOJGRXsl3FpzjRb2TbeTuurnqQ8wn/22.n9GPwTt/IbSnnI0lI9m', 2, 1, '2024-05-01 05:05:43'),
 (3, 'anggie@gmail.com', 'Anggie', '$2y$10$CvOJGRXsl3FpzjRb2TbeTuurnqQ8wn/22.n9GPwTt/IbSnnI0lI9m', 2, 1, '2024-05-05 02:10:03');
 
 -- --------------------------------------------------------
@@ -131,6 +176,18 @@ ALTER TABLE `produk`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `transaksi_detail`
+--
+ALTER TABLE `transaksi_detail`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -150,13 +207,25 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `transaksi_detail`
+--
+ALTER TABLE `transaksi_detail`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`

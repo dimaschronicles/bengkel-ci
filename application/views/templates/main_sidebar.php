@@ -42,7 +42,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="charts.html">
+            <a class="nav-link" href="<?= base_url('transaksi'); ?>">
                 <i class="fas fa-fw fa-shopping-bag"></i>
                 <span>Transaksi</span></a>
         </li>
@@ -65,13 +65,13 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="charts.html">
+            <a class="nav-link" href="<?= base_url('transaksi'); ?>">
                 <i class="fas fa-fw fa-shopping-bag"></i>
                 <span>Transaksi</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="charts.html">
+            <a class="nav-link" href="<?= base_url('laporan'); ?>">
                 <i class="fas fa-fw fa-file-alt"></i>
                 <span>Laporan</span></a>
         </li>

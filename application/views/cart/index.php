@@ -84,9 +84,15 @@
                     <h4>Total Harga : Rp <?= $total_harga; ?></h4>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-primary">
-                        Checkout
-                    </a>
+                    <?php if (!$keranjang) : ?>
+                        <button type="button" class="btn btn-primary" disabled>
+                            Checkout
+                        </button>
+                    <?php else : ?>
+                        <a href="<?= base_url('cart/checkout'); ?>" class="btn btn-primary">
+                            Checkout
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
