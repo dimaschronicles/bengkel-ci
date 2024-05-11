@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2024 at 08:30 AM
+-- Generation Time: May 11, 2024 at 12:06 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -58,7 +58,7 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`id`, `nama_produk`, `deskripsi`, `jenis`, `stok`, `harga`, `diskon`, `foto`, `created_at`) VALUES
-(1, 'Oli Garda', 'adasdasd', 'sparepart', 10, 200000, NULL, NULL, '2024-05-05 12:54:21'),
+(1, 'Oli Garda', 'adasdasd', 'sparepart', 8, 200000, NULL, NULL, '2024-05-05 12:54:21'),
 (2, 'Ganti Oli', 'asdasdasd', 'jasa', NULL, 30000, NULL, NULL, '2024-05-05 12:54:36'),
 (3, 'Velg 17', 'asdasdwqe', 'sparepart', 5, 500000, NULL, 'produk_1714906662.jpg', '2024-05-05 12:57:42');
 
@@ -88,7 +88,8 @@ CREATE TABLE `transaksi` (
 
 INSERT INTO `transaksi` (`id`, `user_id`, `no_pemesanan`, `jenis_pembayaran`, `total`, `status`, `plat_nomor`, `keterangan`, `tanggal_waktu`, `bukti_pembayaran`, `created_at`) VALUES
 (4, 2, 'INV-20240506110616-5211', 'cash', 730000, 'selesai', 'r 1231 sa', 'asdasd', '2024-05-06 11:06:16', NULL, '2024-05-06 11:06:16'),
-(5, 2, 'INV-20240507141044-9845', 'qris', 1200000, 'dipesan', 'r 1231 sa', 'asdasdasd', '2024-05-07 14:10:44', NULL, '2024-05-07 14:10:44');
+(5, 2, 'INV-20240507141044-9845', 'qris', 1200000, 'selesai', 'r 1231 sa', 'asdasdasd', '2024-05-07 14:10:44', NULL, '2024-05-07 14:10:44'),
+(6, 2, 'INV-20240511164936-8614', 'qris', 400000, 'dipesan', 'r 1231 sa', 'ijojoijoijoijoi', '2024-05-11 16:49:36', NULL, '2024-05-11 16:49:36');
 
 -- --------------------------------------------------------
 
@@ -113,7 +114,8 @@ INSERT INTO `transaksi_detail` (`id`, `transaksi_id`, `produk_id`, `jumlah`, `to
 (8, 4, 2, 1, 30000),
 (9, 4, 3, 1, 500000),
 (10, 5, 1, 1, 200000),
-(11, 5, 3, 2, 1000000);
+(11, 5, 3, 2, 1000000),
+(12, 6, 1, 2, 400000);
 
 -- --------------------------------------------------------
 
@@ -125,6 +127,8 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `email` varchar(128) NOT NULL,
   `name` varchar(128) NOT NULL,
+  `no_hp` varchar(36) DEFAULT NULL,
+  `alamat` text DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `role_id` int(11) NOT NULL,
   `is_active` int(1) NOT NULL,
@@ -135,10 +139,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `name`, `password`, `role_id`, `is_active`, `created_at`) VALUES
-(1, 'admin@gmail.com', 'Administrator', '$2y$10$CvOJGRXsl3FpzjRb2TbeTuurnqQ8wn/22.n9GPwTt/IbSnnI0lI9m', 1, 1, '2024-05-01 05:04:23'),
-(2, 'dimas@gmail.com', 'Dimas', '$2y$10$CvOJGRXsl3FpzjRb2TbeTuurnqQ8wn/22.n9GPwTt/IbSnnI0lI9m', 2, 1, '2024-05-01 05:05:43'),
-(3, 'anggie@gmail.com', 'Anggie', '$2y$10$CvOJGRXsl3FpzjRb2TbeTuurnqQ8wn/22.n9GPwTt/IbSnnI0lI9m', 2, 1, '2024-05-05 02:10:03');
+INSERT INTO `users` (`id`, `email`, `name`, `no_hp`, `alamat`, `password`, `role_id`, `is_active`, `created_at`) VALUES
+(1, 'admin@gmail.com', 'Administrator', NULL, NULL, '$2y$10$CvOJGRXsl3FpzjRb2TbeTuurnqQ8wn/22.n9GPwTt/IbSnnI0lI9m', 1, 1, '2024-05-01 05:04:23'),
+(2, 'dimas@gmail.com', 'Dimas', '081903304446', 'Purwokerto', '$2y$10$CvOJGRXsl3FpzjRb2TbeTuurnqQ8wn/22.n9GPwTt/IbSnnI0lI9m', 2, 1, '2024-05-01 05:05:43'),
+(3, 'anggie@gmail.com', 'Anggie', '089412463322', 'Kebumen', '$2y$10$CvOJGRXsl3FpzjRb2TbeTuurnqQ8wn/22.n9GPwTt/IbSnnI0lI9m', 2, 1, '2024-05-05 02:10:03'),
+(4, 'farhan@gmail.com', 'Farhan', '012364856974', 'Bumiayu', '$2y$10$vvpBBzGRR.S.vkAcWeZ10OOmCIFe/s3UBzcKhjEAgUwYOJpjyfOmy', 2, 1, '2024-05-11 10:22:33');
 
 -- --------------------------------------------------------
 
@@ -207,7 +212,7 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `produk`
@@ -219,19 +224,19 @@ ALTER TABLE `produk`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `transaksi_detail`
 --
 ALTER TABLE `transaksi_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user_roles`
