@@ -140,8 +140,9 @@
     </style>
 </head>
 
-<body>
-    <!-- <body onload="window.print();"> -->
+<!-- <body> -->
+
+<body onload="window.print();">
     <header class="clearfix">
         <h1>NOTA</h1>
         <div id="company" class="clearfix">
@@ -214,9 +215,9 @@
     </footer>
     <script>
         // Close tab when printing is canceled
-        // window.onafterprint = function() {
-        //     window.close();
-        // };
+        window.onafterprint = function() {
+            window.close();
+        };
     </script>
 </body>
 
