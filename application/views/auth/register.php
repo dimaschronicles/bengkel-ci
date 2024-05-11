@@ -12,16 +12,24 @@
                         <div class="col-lg-12">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                    <h1 class="h4 text-gray-900 mb-4">Buat Akun Baru!</h1>
                                 </div>
                                 <form class="user" accept="<?= base_url('auth/register'); ?>" method="post">
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Full Name" value="<?= set_value('name'); ?>">
+                                        <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Nama Lengkap" value="<?= set_value('name'); ?>">
                                         <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" id="email" name="email" placeholder="Email Address" value="<?= set_value('email'); ?>">
+                                        <input type="email" class="form-control form-control-user" id="email" name="email" placeholder="Email" value="<?= set_value('email'); ?>">
                                         <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-user" id="alamat" name="alamat" placeholder="Alamat" value="<?= set_value('alamat'); ?>">
+                                        <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-user" id="no_hp" name="no_hp" placeholder="No HP" value="<?= set_value('no_hp'); ?>">
+                                        <?= form_error('no_hp', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
@@ -29,22 +37,22 @@
                                             <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="password" class="form-control form-control-user" id="password_conf" name="password_conf" placeholder="Repeat Password">
+                                            <input type="password" class="form-control form-control-user" id="password_conf" name="password_conf" placeholder="Konfirmasi Password">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
                                             <input type="checkbox" class="custom-control-input" id="customCheck" onclick="showPassReg()">
-                                            <label class="custom-control-label" for="customCheck">Show Password</label>
+                                            <label class="custom-control-label" for="customCheck">Tampilkan Password</label>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-user btn-block">
-                                        Register Account
+                                        Daftar Akun
                                     </button>
                                 </form>
                                 <hr>
                                 <div class="text-center">
-                                    <a class="small" href="<?= base_url('/'); ?>">Already have an account? Login!</a>
+                                    <a class="small" href="<?= base_url('/'); ?>">Sudah punya akun? Login!</a>
                                 </div>
                             </div>
                         </div>

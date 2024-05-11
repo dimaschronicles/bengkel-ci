@@ -56,9 +56,8 @@
                             <?= form_error('plat_nomor', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                         <div class="mb-3">
-                            <label for="keterangan">Keterangan</label>
-                            <textarea class="form-control" id="keterangan" name="keterangan" rows="3"></textarea>
-                            <?= form_error('keterangan', '<small class="text-danger pl-3">', '</small>'); ?>
+                            <label for="keterangan">Keterangan (Opsional)</label>
+                            <textarea class="form-control" id="keterangan" name="keterangan" rows="3" placeholder="Apabila ada keterangan tambahan..."></textarea>
                         </div>
                         <!-- <div class="mb-3">
                             <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>

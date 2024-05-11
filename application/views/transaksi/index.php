@@ -109,9 +109,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="<?= base_url('transaksi/nota/' . $t['id']); ?>" target="_blank" class="btn btn-danger">
-                                        Nota
-                                    </a>
+                                    <?php if ($user['role_id'] == 2) : ?>
+                                        <a href="<?= base_url('transaksi/nota/' . $t['id']); ?>" target="_blank" class="btn btn-danger">
+                                            Nota
+                                        </a>
+                                    <?php endif; ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

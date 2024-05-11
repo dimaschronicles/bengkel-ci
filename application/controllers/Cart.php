@@ -109,7 +109,6 @@ class Cart extends CI_Controller
 
         // validasi form
         $this->form_validation->set_rules('plat_nomor', 'Plat Nomor', 'required|trim');
-        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|trim');
         $this->form_validation->set_rules('jenis_pembayaran', 'Jenis Pembayaran', 'required|trim');
 
         if ($this->form_validation->run() == false) {

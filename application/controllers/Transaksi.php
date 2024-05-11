@@ -66,7 +66,7 @@ class Transaksi extends CI_Controller
     public function nota($id)
     {
         $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
-        $this->db->select('transaksi.*, users.name, users.email');
+        $this->db->select('transaksi.*, users.name, users.email, users.no_hp, users.alamat,');
         $this->db->from('transaksi');
         $this->db->join('users', 'transaksi.user_id = users.id');
         $this->db->where('transaksi.user_id', $data['user']['id']);

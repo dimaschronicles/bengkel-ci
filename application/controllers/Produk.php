@@ -180,9 +180,10 @@ class Produk extends CI_Controller
      */
     public function list()
     {
-        $data['title'] = 'Daftar Produk';
+        $data['title'] = 'Daftar Produk & Layanan';
         $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
-        $data['produk'] = $this->db->get('produk')->result_array();
+        $data['sparepart'] = $this->db->get_where('produk', ['jenis' => 'sparepart'])->result_array();
+        $data['jasa'] = $this->db->get_where('produk', ['jenis' => 'jasa'])->result_array();
 
         $this->load->view('templates/main_header', $data);
         $this->load->view('templates/main_sidebar',);
@@ -193,6 +194,30 @@ class Produk extends CI_Controller
 
     public function detail($id)
     {
-        echo 'hello world';
+        $data['title'] = 'Detail Produk';
+        $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+        $data['produk'] = $this->db->get_where('produk', ['id' => $id])->row_array();
+
+        $this->load->view('templates/main_header', $data);
+        $this->load->view('templates/main_sidebar');
+        $this->load->view('templates/main_topbar', $data);
+        $this->load->view('produk/show', $data);
+        $this->load->view('templates/main_footer');
+    }
+
+    public function cart($id)
+    {
+        $user = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+        $produk = $this->db->get_where('produk', ['id' => $id])->row_array();
+
+        $data = [
+            'user_id' => $user['id'],
+            'produk_id' => $produk['id'],
+            'jumlah' => htmlspecialchars($this->input->post('jumlah')),
+        ];
+
+        $this->db->insert('cart', $data);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Cart created successfully!</div>');
+        redirect('produk/list');
     }
 }

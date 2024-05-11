@@ -4,9 +4,9 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+            <i class="fas fa-motorcycle"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">MyBengkel</div>
     </a>
 
     <!-- Divider -->
@@ -57,7 +57,12 @@
             Administrator
         </div>
 
-        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+            <a class="nav-link" href="<?= base_url('customer'); ?>">
+                <i class="fas fa-fw fa-users"></i>
+                <span>Customer</span></a>
+        </li>
+
         <li class="nav-item">
             <a class="nav-link" href="<?= base_url('produk'); ?>">
                 <i class="fas fa-fw fa-boxes"></i>

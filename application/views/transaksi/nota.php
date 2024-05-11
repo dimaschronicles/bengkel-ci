@@ -140,7 +140,8 @@
     </style>
 </head>
 
-<body onload="window.print();">
+<body>
+    <!-- <body onload="window.print();"> -->
     <header class="clearfix">
         <h1>NOTA</h1>
         <div id="company" class="clearfix">
@@ -150,7 +151,8 @@
         </div>
         <div id="project">
             <div><span>NAMA</span> <?= $transaksi['name']; ?></div>
-            <div><span>EMAIL</span> <?= $transaksi['email']; ?></div>
+            <div><span>NO HP</span> <?= $transaksi['no_hp']; ?></div>
+            <div><span>ALAMAT</span> <?= $transaksi['alamat']; ?></div>
             <div><span>PLAT</span> <?= strtoupper($transaksi['plat_nomor']); ?></div>
             <div><span>TANGGAL</span> <?= $transaksi['tanggal_waktu']; ?></div>
         </div>
@@ -212,9 +214,9 @@
     </footer>
     <script>
         // Close tab when printing is canceled
-        window.onafterprint = function() {
-            window.close();
-        };
+        // window.onafterprint = function() {
+        //     window.close();
+        // };
     </script>
 </body>
 

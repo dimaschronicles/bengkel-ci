@@ -57,6 +57,8 @@ class Auth extends CI_Controller
     public function register()
     {
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
+        $this->form_validation->set_rules('no_hp', 'No HP', 'required|trim|numeric|min_length[11]');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[users.email]', [
             'is_unique' => 'Email already taken',
         ]);
@@ -74,6 +76,8 @@ class Auth extends CI_Controller
         } else {
             $data = [
                 'name' => htmlspecialchars($this->input->post('name')),
+                'alamat' => htmlspecialchars($this->input->post('alamat')),
+                'no_hp' => htmlspecialchars($this->input->post('no_hp')),
                 'email' => htmlspecialchars($this->input->post('email')),
                 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                 'role_id' => 2,
