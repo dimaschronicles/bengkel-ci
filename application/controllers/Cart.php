@@ -128,7 +128,7 @@ class Cart extends CI_Controller
                 'no_pemesanan' => $no_pemesanan,
                 'user_id' => $data['user']['id'],
                 'plat_nomor' => htmlspecialchars($this->input->post('plat_nomor')),
-                'keterangan' => htmlspecialchars($this->input->post('keterangan')),
+                'keterangan' => !empty($this->input->post('keterangan')) ? htmlspecialchars($this->input->post('keterangan')) : null,
                 'jenis_pembayaran' => htmlspecialchars($this->input->post('jenis_pembayaran')),
                 'status' => 'dipesan',
                 'total' => $total_harga,

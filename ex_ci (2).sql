@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2024 at 12:06 PM
+-- Generation Time: May 11, 2024 at 12:17 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -76,7 +76,7 @@ CREATE TABLE `transaksi` (
   `total` bigint(11) NOT NULL,
   `status` enum('dipesan','diproses','selesai') DEFAULT NULL,
   `plat_nomor` varchar(128) NOT NULL,
-  `keterangan` text NOT NULL,
+  `keterangan` text DEFAULT NULL,
   `tanggal_waktu` datetime NOT NULL,
   `bukti_pembayaran` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL
@@ -89,7 +89,8 @@ CREATE TABLE `transaksi` (
 INSERT INTO `transaksi` (`id`, `user_id`, `no_pemesanan`, `jenis_pembayaran`, `total`, `status`, `plat_nomor`, `keterangan`, `tanggal_waktu`, `bukti_pembayaran`, `created_at`) VALUES
 (4, 2, 'INV-20240506110616-5211', 'cash', 730000, 'selesai', 'r 1231 sa', 'asdasd', '2024-05-06 11:06:16', NULL, '2024-05-06 11:06:16'),
 (5, 2, 'INV-20240507141044-9845', 'qris', 1200000, 'selesai', 'r 1231 sa', 'asdasdasd', '2024-05-07 14:10:44', NULL, '2024-05-07 14:10:44'),
-(6, 2, 'INV-20240511164936-8614', 'qris', 400000, 'dipesan', 'r 1231 sa', 'ijojoijoijoijoi', '2024-05-11 16:49:36', NULL, '2024-05-11 16:49:36');
+(6, 2, 'INV-20240511164936-8614', 'qris', 400000, 'dipesan', 'r 1231 sa', 'ijojoijoijoijoi', '2024-05-11 16:49:36', NULL, '2024-05-11 16:49:36'),
+(10, 3, 'INV-20240511171706-4941', 'cash', 30000, 'dipesan', 'r 1231 sa', NULL, '2024-05-11 17:17:06', NULL, '2024-05-11 17:17:06');
 
 -- --------------------------------------------------------
 
@@ -115,7 +116,8 @@ INSERT INTO `transaksi_detail` (`id`, `transaksi_id`, `produk_id`, `jumlah`, `to
 (9, 4, 3, 1, 500000),
 (10, 5, 1, 1, 200000),
 (11, 5, 3, 2, 1000000),
-(12, 6, 1, 2, 400000);
+(12, 6, 1, 2, 400000),
+(16, 10, 2, 1, 30000);
 
 -- --------------------------------------------------------
 
@@ -212,7 +214,7 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `produk`
@@ -224,13 +226,13 @@ ALTER TABLE `produk`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `transaksi_detail`
 --
 ALTER TABLE `transaksi_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users`

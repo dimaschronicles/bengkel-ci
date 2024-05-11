@@ -99,7 +99,7 @@
                                                             <div>
                                                                 <h6 class="my-0">Keterangan</h6>
                                                             </div>
-                                                            <span class="text-muted"><?= $t['keterangan']; ?></span>
+                                                            <span class="text-muted"><?= $t['keterangan'] ?? '[tidak ada keterangan]'; ?></span>
                                                         </li>
                                                     </ul>
                                                 </div>
