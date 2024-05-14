@@ -29,14 +29,14 @@
                     <legend class="col-form-label col-sm-2 float-sm-left pt-0">Jenis</legend>
                     <div class="col-sm-10">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="jenis" id="jenis" value="sparepart">
-                            <label class="form-check-label" for="jenis">
+                            <input class="form-check-input" type="radio" name="jenis" id="jenis_sparepart" value="sparepart">
+                            <label class="form-check-label" for="jenis_sparepart">
                                 Spare Part
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="jenis" id="jenis" value="jasa">
-                            <label class="form-check-label" for="jenis">
+                            <input class="form-check-input" type="radio" name="jenis" id="jenis_jasa" value="jasa">
+                            <label class="form-check-label" for="jenis_jasa">
                                 Jasa
                             </label>
                         </div>
@@ -52,11 +52,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label for="harga" class="col-sm-2 col-form-label">Harga</label>
-                    <div class="col-sm-10">
-                        <input type="number" class="form-control" id="harga" name="harga" value="<?= set_value('harga'); ?>">
-                        <?= form_error('harga', '<small class="text-danger pl-3">', '</small>'); ?>
+                <div id="hargaField">
+                    <div class="form-group row">
+                        <label for="harga" class="col-sm-2 col-form-label">Harga</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="harga" name="harga" value="<?= set_value('harga'); ?>">
+                            <?= form_error('harga', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -86,22 +88,25 @@
     document.addEventListener("DOMContentLoaded", function() {
         var jenisRadios = document.querySelectorAll('input[name="jenis"]');
         var stokField = document.getElementById('stokField');
+        var hargaField = document.getElementById('hargaField');
 
-        // Function to toggle display of stok field
-        function toggleStokField() {
-            if (jenisRadios[0].checked) { // If sparepart is selected
+        // Function to toggle display of stok and harga fields
+        function toggleFields() {
+            if (document.getElementById('jenis_sparepart').checked) {
                 stokField.style.display = 'block';
-            } else {
+                hargaField.style.display = 'block';
+            } else if (document.getElementById('jenis_jasa').checked) {
                 stokField.style.display = 'none';
+                hargaField.style.display = 'none';
             }
         }
 
         // Initial state
-        toggleStokField();
+        toggleFields();
 
         // Event listener for jenis radios
         for (var i = 0; i < jenisRadios.length; i++) {
-            jenisRadios[i].addEventListener('change', toggleStokField);
+            jenisRadios[i].addEventListener('change', toggleFields);
         }
     });
 </script>

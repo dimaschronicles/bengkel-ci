@@ -46,6 +46,12 @@
                 <i class="fas fa-fw fa-shopping-bag"></i>
                 <span>Transaksi</span></a>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="<?= base_url('krisar/create'); ?>">
+                <i class="fas fa-fw fa-inbox"></i>
+                <span>Kritik & Saran</span></a>
+        </li>
     <?php endif; ?>
 
     <?php if ($user['role_id'] == 1) : ?>
@@ -64,6 +70,12 @@
         </li>
 
         <li class="nav-item">
+            <a class="nav-link" href="<?= base_url('montir'); ?>">
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Montir</span></a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link" href="<?= base_url('produk'); ?>">
                 <i class="fas fa-fw fa-boxes"></i>
                 <span>Produk</span></a>
@@ -75,6 +87,14 @@
                 <span>Transaksi</span></a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="<?= base_url('krisar'); ?>">
+                <i class="fas fa-fw fa-inbox"></i>
+                <span>Kritik & Saran</span></a>
+        </li>
+    <?php endif; ?>
+
+    <?php if ($user['role_id'] == 1 || $user['role_id'] == 3) : ?>
         <li class="nav-item">
             <a class="nav-link" href="<?= base_url('laporan'); ?>">
                 <i class="fas fa-fw fa-file-alt"></i>

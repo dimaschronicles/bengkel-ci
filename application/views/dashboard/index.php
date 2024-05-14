@@ -6,7 +6,7 @@
         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
     </div>
 
-    <?php if ($user['role_id'] == 1) : ?>
+    <?php if ($user['role_id'] == 1 || $user['role_id'] == 3) : ?>
         <!-- Content Row -->
         <div class="row">
 
@@ -106,7 +106,7 @@
                                     <?php endif; ?>
                                     <div class="card-body">
                                         <h4 class="card-title"><?= $p['nama_produk']; ?></h4>
-                                        <p class="card-text">Rp <?= $p['harga']; ?> | Stok : <?= $p['stok'] ?? '-'; ?> | Jenis : <?= $p['jenis']; ?></p>
+                                        <p class="card-text">Jenis : <?= $p['jenis']; ?></p>
                                         <a href="<?= base_url('cart/store/' . $p['id']); ?>" class="btn btn-primary">
                                             <i class="fas fa-cart-plus"></i>
                                             Keranjang

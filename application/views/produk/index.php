@@ -35,7 +35,7 @@
                                 <td><?= $p['nama_produk']; ?></td>
                                 <td><?= $p['jenis']; ?></td>
                                 <td><?= $p['stok'] ?? '-'; ?></td>
-                                <td><?= $p['harga']; ?></td>
+                                <td><?= $p['harga'] ?? '-'; ?></td>
                                 <td>
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal<?= $p['id']; ?>">

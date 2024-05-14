@@ -23,8 +23,9 @@ class Laporan extends CI_Controller
         if (empty($tanggal_mulai) && empty($tanggal_selesai)) {
             $data['transaksi'] = '';
         } else {
-            $this->db->select('transaksi.*, users.name, users.email');
+            $this->db->select('transaksi.*, users.name, users.email, montir.nama_montir, montir.no_hp_montir, montir.alamat_montir');
             $this->db->from('transaksi');
+            $this->db->join('montir', 'transaksi.montir_id = montir.id', 'left');
             $this->db->join('users', 'transaksi.user_id = users.id');
             // Filter berdasarkan rentang tanggal_waktu
             $this->db->where('tanggal_waktu >=', $tanggal_mulai);

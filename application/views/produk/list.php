@@ -35,7 +35,6 @@
                                         <?php endif; ?>
                                         <div class="card-body">
                                             <h4 class="card-title"><?= $j['nama_produk']; ?></h4>
-                                            <p class="card-text">Rp <?= $j['harga']; ?></p>
                                             <a href="<?= base_url('cart/store/' . $j['id']); ?>" class="btn btn-primary">
                                                 <i class="fas fa-cart-plus"></i>
                                                 Keranjang

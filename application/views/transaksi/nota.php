@@ -182,7 +182,7 @@
                     <tr>
                         <td class="service"><?= $detail['nama_produk']; ?></td>
                         <td class="desc"><?= $detail['jenis']; ?></td>
-                        <td class="unit">Rp <?= $detail['harga']; ?></td>
+                        <td class="unit">Rp <?= $detail['harga'] ?? $detail['total_harga']; ?></td>
                         <td class="qty"><?= $detail['jumlah']; ?></td>
                         <td class="total">Rp <?= $detail['total_harga']; ?></td>
                     </tr>
@@ -202,8 +202,12 @@
             </tbody>
         </table>
         <div id="notices">
+            <div>MONTIR:</div>
+            <div class="notice"><?= $transaksi['nama_montir'] ?? '-'; ?></div>
+        </div>
+        <div id="notices" style="margin-top: 10px;">
             <div>KETERANGAN:</div>
-            <div class="notice"><?= $transaksi['keterangan']; ?></div>
+            <div class="notice"><?= $transaksi['keterangan'] ?? '-'; ?></div>
         </div>
         <div id="notices" style="margin-top: 10px;">
             <div>JENIS PEMBAYARAN:</div>

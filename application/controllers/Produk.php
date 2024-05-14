@@ -31,7 +31,7 @@ class Produk extends CI_Controller
         $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required|trim');
         $this->form_validation->set_rules('jenis', 'Jenis', 'required|trim');
         $this->form_validation->set_rules('stok', 'Stok', 'trim|numeric');
-        $this->form_validation->set_rules('harga', 'Harga', 'required|trim|numeric');
+        $this->form_validation->set_rules('harga', 'Harga', 'trim|numeric');
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Tambah Produk';
@@ -70,7 +70,7 @@ class Produk extends CI_Controller
                 'deskripsi' => htmlspecialchars($this->input->post('deskripsi')),
                 'jenis' => htmlspecialchars($this->input->post('jenis')),
                 'stok' => $this->input->post('stok') != '' ? htmlspecialchars($this->input->post('stok')) : null,
-                'harga' => htmlspecialchars($this->input->post('harga')),
+                'harga' => $this->input->post('harga') != '' ? htmlspecialchars($this->input->post('harga')) : null,
                 'foto' => $foto, // Nama file gambar disimpan ke database
                 'created_at' => date('Y-m-d H:i:s'),
             ];

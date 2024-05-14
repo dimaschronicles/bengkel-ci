@@ -17,6 +17,7 @@
                             <th>#</th>
                             <th>No Transaksi</th>
                             <th>Nama</th>
+                            <th>Montir</th>
                             <th>Total Harga</th>
                             <th>Status</th>
                             <th>Aksi</th>
@@ -37,6 +38,7 @@
                                 <td><?= $i++; ?></td>
                                 <td><?= $t['no_pemesanan']; ?></td>
                                 <td><?= $t['name']; ?></td>
+                                <td><?= $t['nama_montir'] ?? '[belum ditentukan]'; ?></td>
                                 <td>Rp <?= $t['total']; ?></td>
                                 <td>
                                     <?php if ($t['status'] == 'dipesan') : ?>
@@ -74,15 +76,27 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <ul class="list-group">
+                                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                                            <div>
+                                                                <h6 class="my-0">Nama Montir</h6>
+                                                            </div>
+                                                            <span class="text-muted"><?= $t['nama_montir'] ?? '[belum ditentukan]'; ?></span>
+                                                        </li>
                                                         <?php foreach ($transaksi_detail as $detail) : ?>
                                                             <li class="list-group-item d-flex justify-content-between lh-condensed">
                                                                 <div>
                                                                     <h6 class="my-0"><?= $detail['nama_produk']; ?></h6>
-                                                                    <small class="text-muted"><?= $detail['jumlah']; ?> x <?= $detail['harga']; ?></small>
+                                                                    <small class="text-muted"><?= $detail['jumlah']; ?> x <?= $detail['total_harga']; ?></small>
                                                                 </div>
-                                                                <span class="text-muted">Rp <?= $detail['jumlah'] * $detail['harga']; ?></span>
+                                                                <span class="text-muted">Rp <?= $detail['jumlah'] * $detail['total_harga']; ?></span>
                                                             </li>
                                                         <?php endforeach; ?>
+                                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                                            <div>
+                                                                <h6 class="my-0">Total</h6>
+                                                            </div>
+                                                            <span class="text-muted">Rp <?= $t['total']; ?></span>
+                                                        </li>
                                                         <li class="list-group-item d-flex justify-content-between lh-condensed">
                                                             <div>
                                                                 <h6 class="my-0">Jenis Pembayaran</h6>
@@ -109,7 +123,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <?php if ($user['role_id'] == 2) : ?>
+                                    <?php if ($user['role_id'] == 1) : ?>
                                         <a href="<?= base_url('transaksi/nota/' . $t['id']); ?>" target="_blank" class="btn btn-danger">
                                             Nota
                                         </a>
@@ -123,8 +137,9 @@
                             <th>#</th>
                             <th>No Transaksi</th>
                             <th>Nama</th>
-                            <th>Jenis Pembayaran</th>
+                            <th>Montir</th>
                             <th>Total Harga</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </tfoot>

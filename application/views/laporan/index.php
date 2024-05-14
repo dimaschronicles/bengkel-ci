@@ -45,6 +45,7 @@
                                 <th>No Transaksi</th>
                                 <th>Tanggal</th>
                                 <th>Nama</th>
+                                <th>Montir</th>
                                 <th>Total Harga</th>
                                 <th>Status</th>
                             </tr>
@@ -57,6 +58,7 @@
                                     <td><?= $t['no_pemesanan']; ?></td>
                                     <td><?= $t['tanggal_waktu']; ?></td>
                                     <td><?= $t['name']; ?></td>
+                                    <td><?= $t['nama_montir']; ?></td>
                                     <td>Rp <?= $t['total']; ?></td>
                                     <td>
                                         <?php if ($t['status'] == 'dipesan') : ?>
