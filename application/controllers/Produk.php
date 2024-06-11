@@ -7,6 +7,7 @@ class Produk extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
+        $this->load->library('session');
     }
 
     /**
@@ -180,6 +181,10 @@ class Produk extends CI_Controller
      */
     public function list()
     {
+        if (!$this->session->userdata('email')) {
+            return redirect('auth');
+        }
+
         $data['title'] = 'Daftar Produk & Layanan';
         $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
         $data['sparepart'] = $this->db->get_where('produk', ['jenis' => 'sparepart'])->result_array();

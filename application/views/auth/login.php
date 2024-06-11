@@ -43,6 +43,9 @@
                                 <div class="text-center">
                                     <a class="small" href="<?= base_url('auth/register'); ?>">Daftar akun baru!</a>
                                 </div>
+                                <div class="text-center">
+                                    <a class="small" href="<?= base_url('/'); ?>">Landing Page</a>
+                                </div>
                             </div>
                         </div>
                     </div>

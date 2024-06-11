@@ -7,10 +7,15 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
+        $this->load->library('session');
     }
 
     public function index()
     {
+        if ($this->session->userdata('email')) {
+            return redirect('dashboard');
+        }
+
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'required|trim');
 

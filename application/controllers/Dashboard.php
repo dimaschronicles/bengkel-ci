@@ -3,8 +3,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Dashboard extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->library('session');
+    }
+
     public function index()
     {
+        if (!$this->session->userdata('email')) {
+            return redirect('auth');
+        }
+
         $data['title'] = 'Dashboard';
         $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
         $data['produk'] = $this->db->limit(10)->get('produk')->result_array();
