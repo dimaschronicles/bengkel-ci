@@ -32,6 +32,7 @@
                 Detail Pesanan
             </div>
             <div class="card-body">
+                <a href="<?= base_url('transaksi/addproduk/' . $transaksiId); ?>" class="btn btn-dark mb-3">Tambah Produk</a>
                 <table class="table table-striped">
                     <thead>
                         <tr>

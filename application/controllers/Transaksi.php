@@ -55,6 +55,7 @@ class Transaksi extends CI_Controller
         $data['transaksiDetail'] = $this->db->get()->result_array();
 
         $data['montir'] = $this->db->get('montir')->result_array();
+        $data['transaksiId'] = $id;
 
         $this->form_validation->set_rules('montir_id', 'Montir', 'required|trim');
 
@@ -130,5 +131,76 @@ class Transaksi extends CI_Controller
         $data['transaksi'] = $this->db->get()->row_array();
 
         $this->load->view('transaksi/nota', $data);
+    }
+
+    /**
+     * copy kode ini $data['transaksiId'] = $id; pada function proses letakan diatas title
+     * -----------------------------------
+     * Tambahkan kode dibawah ini kemudian buat file baru dengan nama add_produk.php pada folder views/transaksi/
+     * copy kan isinya sesuaikan
+     */
+    public function addProduk($id)
+    {
+        $data['title'] = 'Tambah Produk';
+        $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+        $data['produk'] = $this->db->get('produk')->result_array();
+        $data['transaksi'] = $this->db->get_where('transaksi', ['id' => $id])->row_array();
+
+        $this->load->view('templates/main_header', $data);
+        $this->load->view('templates/main_sidebar',);
+        $this->load->view('templates/main_topbar', $data);
+        $this->load->view('transaksi/add_produk', $data);
+        $this->load->view('templates/main_footer');
+    }
+
+    public function storeProduk($produkId, $transaksiId)
+    {
+        // Ambil data produk berdasarkan produkId
+        $produk = $this->db->get_where('produk', ['id' => $produkId])->row_array();
+
+        if ($produk) {
+            // insert ke transaksi detail sesuai transaksi id
+            $data = [
+                'transaksi_id' => $transaksiId,
+                'produk_id' => $produkId,
+                'jumlah' => 1,
+                'total_harga' => $produk['harga'],
+            ];
+            $this->db->insert('transaksi_detail', $data);
+
+            // Kurangi stok produk
+            $stokBaru = $produk['stok'] - 1;
+            if ($stokBaru < 0) {
+                $this->session->set_flashdata('error', '<div class="alert alert-danger" role="alert">Stok produk tidak mencukupi!</div>');
+                redirect('transaksi/proses/' . $transaksiId);
+            }
+
+            $this->db->where('id', $produkId);
+            $this->db->update('produk', ['stok' => $stokBaru]);
+
+            // Ambil total saat ini dari transaksi
+            $transaksi = $this->db->get_where('transaksi', ['id' => $transaksiId])->row_array();
+
+            if ($transaksi) {
+                // Hitung total baru
+                $totalBaru = $transaksi['total'] + $produk['harga'];
+
+                // Update tabel transaksi dengan total yang baru
+                $this->db->where('id', $transaksiId);
+                $this->db->update('transaksi', ['total' => $totalBaru]);
+            } else {
+                // Jika transaksi tidak ditemukan, beri pesan error atau redirect
+                $this->session->set_flashdata('error', '<div class="alert alert-danger" role="alert">Transaksi tidak ditemukan!</div>');
+                redirect('transaksi');
+            }
+        } else {
+            // Jika produk tidak ditemukan, beri pesan error atau redirect
+            $this->session->set_flashdata('error', '<div class="alert alert-danger" role="alert">Produk tidak ditemukan!</div>');
+            redirect('transaksi');
+        }
+
+        // Redirect ke halaman transaksi detail
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data updated successfully!</div>');
+        redirect('transaksi/proses/' . $transaksiId);
     }
 }
