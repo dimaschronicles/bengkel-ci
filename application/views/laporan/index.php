@@ -37,6 +37,9 @@
         </div>
         <?php if (!empty($transaksi)) : ?>
             <div class="card-body">
+                <a href="<?= base_url('laporan/exportExcel') . '?tanggal_mulai=' . urlencode($tanggal_mulai) . '&tanggal_selesai=' . urlencode($tanggal_selesai); ?>" class="btn btn-success mb-3">
+                    Cetak Laporan
+                </a>
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
