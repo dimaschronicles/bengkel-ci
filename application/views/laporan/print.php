@@ -1,5 +1,3 @@
-<!-- views/laporan/print.php -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,11 +19,38 @@
             padding: 8px;
             text-align: left;
         }
+
+        .kop-surat {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .kop-surat img {
+            margin-right: 20px;
+        }
+
+        .kop-surat .text {
+            text-align: center;
+        }
     </style>
 </head>
 
 <body onload="window.print();">
-    <h2>Laporan Transaksi</h2>
+    <!-- kop surat -->
+    <div class="kop-surat">
+        <!-- <img src="<?= base_url(); ?>/assets/img/laliga.png" width="50"> -->
+        <div class="text">
+            <span><b>JUDUL KOP SURAT</b></span><br>
+            <span style="font-size: 10px;">Jl. Raya Pangebatan</span>
+        </div>
+        <div></div>
+    </div>
+
+    <hr>
+
+    <h3>Laporan Transaksi</h3>
     <p>Filter Tanggal: <?= htmlspecialchars($tanggal_mulai); ?> sampai <?= htmlspecialchars($tanggal_selesai); ?></p>
 
     <?php if (!empty($transaksi)) : ?>
