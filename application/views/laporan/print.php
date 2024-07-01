@@ -23,7 +23,7 @@
         .kop-surat {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
             margin-bottom: 20px;
         }
 
@@ -34,13 +34,29 @@
         .kop-surat .text {
             text-align: center;
         }
+
+        .tanda-tangan-container {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 50px;
+        }
+
+        .tanda-tangan {
+            text-align: left;
+        }
+
+        .tanda-tangan .nama {
+            margin-top: 60px;
+            text-decoration: underline;
+        }
     </style>
 </head>
 
 <body onload="window.print();">
     <!-- kop surat -->
     <div class="kop-surat">
-        <!-- <img src="<?= base_url(); ?>/assets/img/laliga.png" width="50"> -->
+        <img src="<?= base_url(); ?>/assets/img/mecanic.png" width="50">
         <div class="text">
             <span><b>JUDUL KOP SURAT</b></span><br>
             <span style="font-size: 10px;">Jl. Raya Pangebatan</span>
@@ -81,6 +97,14 @@
     <?php else : ?>
         <p>Tidak ada data transaksi untuk periode ini.</p>
     <?php endif; ?>
+
+    <div class="tanda-tangan-container">
+        <div class="tanda-tangan">
+            <p>Mengetahui, <br>Purwokerto, <?= date('d M Y'); ?></p>
+            <div class="nama">Slamet Motor</div>
+        </div>
+    </div>
+
     <script>
         // Close tab when printing is canceled
         window.onafterprint = function() {
